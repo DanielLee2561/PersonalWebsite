@@ -1,7 +1,7 @@
 
 <?php
   $generalConnection = "";
-  $baseLinkPHP = 'C:\xampp\htdocs\Final Project';
+  $baseLinkPHP = 'C:\xampp\htdocs\src';
   $targetPage = ""; /* = navButton */
   $fileAbout = ""; /* About.txt */
   $featured[] = array(); /* Numerical Indexes */

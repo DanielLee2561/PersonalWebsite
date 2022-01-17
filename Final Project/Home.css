@@ -1,0 +1,277 @@
+
+:root {
+  /*body*/
+  --background: black;
+  /*#page*/
+  --pageWidth: 80%;
+  --pageMarginTop: 50px;
+  --pageMarginBottom: 20px;
+  /*#nav*/
+  --navFont: normal 600 1em corbel, serif;
+  --navColor: black;
+  --navGlow: HSL(24, 90%, 50%);
+  --navButton: HSL(198, 60%, 72%);
+  --navButtonHover: HSL(198, 60%, 84%);
+  --navButtonHighlight: HSL(198, 100%, 72%);
+  --navButtonHighlightHover: HSL(198, 100%, 84%);
+  --navMarginX: 5px;
+  --navMarginBottom: 5px;
+  /*.content*/
+  --contentFontHeading: italic 600 calc(var(--contentFontSize) * 2) corbel, serif;
+  --contentFontText: italic 540 var(--contentFontSize) corbel, serif;
+  --contentFontSize: 0.9em;
+  /*#home*/
+  --featuredMarginTop: 10px;
+  --featuredImageMaxSize: 270px;
+  /*#writing*/
+  --writingFontText: normal 600 1em corbel, serif;
+  --writingFontColor: HSL(30, 100%, 50%);
+  --writingPageFontText: normal 540 1em corbel, serif;
+  /*#drawing*/
+  --drawingFontText: italic 540 1em corbel, serif;
+  /*#music*/
+  --musicFontText: normal 600 var(--musicFontSize) corbel, serif;
+  --musicFontColor: HSL(24, 100%, 50%);
+  --musicFontSize: 1em;
+  /*Colors*/
+  --colorStandard: HSL(48, 50%, 80%);
+  --colorStandardLight: HSL(48, 50%, 84%);
+  --colorStandardDark: HSL(48, 50%, 78%);
+  --colorHighlight: HSL(48, 50%, 60%);
+  --colorHighlight2: HSL(48, 50%, 90%);
+}
+
+body {
+  background-color: var(--background);
+  text-align: center;
+}
+
+#page {
+  width: var(--pageWidth);
+  margin: auto;
+  margin-top: var(--pageMarginTop);
+  margin-bottom: var(--pageMarginBottom);
+}
+
+#nav { /* note: Flex Display is necessary for span's width to be variable. */
+  display: flex;
+  flex-direction: row;
+}
+
+#nav > span {
+  display: flex; 
+  flex-direction: row;
+}
+
+#nav #glow {
+  background-image: radial-gradient(var(--navGlow) 0%, black 78%);
+  border-radius: 50%; /* Circle */
+  height: 30px;
+  margin-bottom: var(--navMarginBottom);
+  margin-left: var(--navMarginX);
+  margin-right: var(--navMarginX);
+  opacity: 0.6; /* animation: Glow */
+  transition: all 2s ease; /* animation: Glow */
+  width: 30px;
+}
+
+#nav button { /* Total Height = 30px (#button) - ignoring borders */
+  background-color: var(--navButton);
+  border: 2px var(--navButtonHighlight) solid;
+  border-radius: 12%;
+  color: var(--navColor);
+  display: none; /* animation: Slide */
+  font: var(--navFont);
+  height: 20px;
+  margin-top: var(--navMarginBottom);
+  margin-bottom: var(--navMarginBottom);
+  margin-left: var(--navMarginX);
+  margin-right: var(--navMarginX);
+  min-width: 50px; /* Accounting for varied size of words. */
+  position: relative; /* animation: Slide */
+  text-decoration: none;
+}
+
+#nav > span:hover #glow {
+  opacity: 1.0;
+}
+
+#nav > span:hover button {
+  display: block;
+  animation: navSpanHover 2s ease;
+}
+
+#nav button:hover {
+  background-color: var(--navButtonHover);
+  border: 2px var(--navButtonHighlightHover) solid;  
+}
+
+@keyframes navSpanHover { 
+  0% {
+    opacity: 0.0;
+    left: -45px; /* Accounting for width & margins. */
+  }
+  100% {
+    opacity: 1.0;
+    left: 0px;
+  }
+}
+
+.content {
+  background-color: var(--colorStandard);
+  border: 1px var(--colorHighlight) solid;
+  border-radius: 0.6%;
+  box-shadow: 1px 1px 12px var(--colorHighlight);
+  font: var(--contentFontText);
+  height: 800px;
+  overflow: auto;
+}
+
+.content h1 {
+  font: var(--contentFontHeading);
+}
+
+.content > div {
+  border-top: 1px var(--colorHighlight) solid;
+  border-bottom: 1px var(--colorHighlight) solid;
+}
+
+#home > div {
+  display: flex;
+  flex-direction: row;
+  height: 300px;
+}
+
+#home div #L {
+  background-color: var(--colorStandardLight);
+  flex: 1;
+}
+
+#home div #L img {
+  display: block;
+  margin-top: var(--featuredMarginTop);
+  margin-left: auto;
+  margin-right: auto;
+  max-height: var(--featuredImageMaxSize);
+  max-width: var(--featuredImageMaxSize);
+  border: 1px var(--colorHighlight) solid;
+}
+
+#home div #L p {
+  margin-top: 5px;
+}
+
+#home div #R {
+  background-color: var(--colorStandardDark);
+  border-left: 1px var(--colorHighlight) solid;
+  flex: 1;
+  flex-direction: column;
+  overflow: auto;
+}
+
+#home div #R audio {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: var(--featuredMarginTop);
+}
+
+#writing > div {
+  background-color: var(--colorStandard);
+  font: var(--writingPageFontText);
+  padding: 10px;
+  text-align: left;
+}
+
+#writing button { /* Left/Right Borders */ 
+  border: none; /* remove default buttonBorders */
+  border-left: 1px var(--colorHighlight2) solid;
+  border-right: 1px var(--colorHighlight2) solid;
+  color: var(--writingFontColor);
+  display: block;
+  font: var(--writingFontText);
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 10px;
+  text-align: left;
+  text-decoration: none;
+  width: 100%;
+}
+
+#writing button:nth-child(n + 2) { /* In-Between Borders */
+  border-top: 1px var(--colorHighlight2) solid;
+}
+
+#writing button:nth-child(1) { /* Top Border */
+  border-top: 1px var(--colorHighlight2) solid;
+}
+
+#writing button:nth-last-child(1) { /* Bottom Border */
+  border-bottom: 1px var(--colorHighlight2) solid;
+}
+
+#writing button:nth-child(odd) {
+  background-color: var(--colorStandardLight);
+}
+
+#writing button:nth-child(even) {
+  background-color: var(--colorStandardDark);
+}
+
+#drawing span {
+  background-color: var(--colorStandardLight);
+  border: 1px var(--colorHighlight) solid;
+  display: inline-block;
+  margin: 10px;
+  padding: 10px;
+}
+
+#drawing img {
+  display: block;
+  max-height: 240px;
+  border: 1px var(--colorHighlight) solid;
+}
+
+#drawing p {
+  font: var(--drawingFontText);
+  margin-top: 10px;
+  margin-bottom: 0px;
+}
+
+#music > div {
+  padding: 10px;
+  text-align: left;
+}
+
+#music > div div {
+  border-right: 1px var(--colorHighlight2) solid;
+  border-left: 1px var(--colorHighlight2) solid;
+  color: var(--musicFontColor);
+  font: var(--musicFontText);
+  padding-left: 10px;
+}
+
+#music > div div:nth-child(n + 2) { /* In-Between Borders */
+  border-top: 1px var(--colorHighlight2) solid;
+}
+
+#music > div div:nth-child(1) { /* Top Border */
+  border-top: 1px var(--colorHighlight2) solid;
+}
+
+#music > div div:nth-last-child(1) { /* Bottom Border */
+  border-bottom: 1px var(--colorHighlight2) solid;
+}
+
+#music > div div:nth-child(odd) {
+  background-color: var(--colorStandardLight);
+}
+
+#music > div div:nth-child(even) {
+  background-color: var(--colorStandardDark);
+}
+
+#music audio {
+  height: var(--musicFontSize);
+  margin-top: 5px; /* Vertical Alignment */
+  margin-left: 10px;
+}
